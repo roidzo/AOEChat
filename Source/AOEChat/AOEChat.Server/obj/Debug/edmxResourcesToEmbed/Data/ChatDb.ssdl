@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AOEChatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChatUser">
+    <Key>
+      <PropertyRef Name="ChatUserId" />
+    </Key>
+    <Property Name="ChatUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LastUserPosition">
+    <Key>
+      <PropertyRef Name="CurrentUserPositionId" />
+    </Key>
+    <Property Name="CurrentUserPositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChatUserId" Type="int" />
+    <Property Name="GpsXCoord" Type="real" Nullable="false" />
+    <Property Name="GpsYCoord" Type="real" Nullable="false" />
+    <Property Name="TimeSent" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChatUserId" Type="int" Nullable="false" />
+    <Property Name="MessageText" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="GpsXCoord" Type="real" Nullable="false" />
+    <Property Name="GpsYCoord" Type="real" Nullable="false" />
+    <Property Name="TimeSent" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__LastUserP__ChatU__2F10007B">
+    <End Role="ChatUser" Type="Self.ChatUser" Multiplicity="0..1" />
+    <End Role="LastUserPosition" Type="Self.LastUserPosition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChatUser">
+        <PropertyRef Name="ChatUserId" />
+      </Principal>
+      <Dependent Role="LastUserPosition">
+        <PropertyRef Name="ChatUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Message__ChatUse__29572725">
+    <End Role="ChatUser" Type="Self.ChatUser" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChatUser">
+        <PropertyRef Name="ChatUserId" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="ChatUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetGpsVectorFromTo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="latFrom" Type="float" Mode="In" />
+    <Parameter Name="lonFrom" Type="float" Mode="In" />
+    <Parameter Name="latTo" Type="float" Mode="In" />
+    <Parameter Name="lonTo" Type="float" Mode="In" />
+  </Function>
+  <Function Name="GetRadialDistanceInKm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="CurrentLat" Type="float" Mode="In" />
+    <Parameter Name="CurrentLng" Type="float" Mode="In" />
+    <Parameter Name="TargetLat" Type="float" Mode="In" />
+    <Parameter Name="TargetLng" Type="float" Mode="In" />
+  </Function>
+  <Function Name="GetRadialDistanceInKm2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="lat1" Type="float" Mode="In" />
+    <Parameter Name="lon1" Type="float" Mode="In" />
+    <Parameter Name="lat2" Type="float" Mode="In" />
+    <Parameter Name="lon2" Type="float" Mode="In" />
+  </Function>
+  <Function Name="GpsGlb_x" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="lat" Type="float" Mode="In" />
+    <Parameter Name="lon" Type="float" Mode="In" />
+  </Function>
+  <Function Name="GpsGlb_y" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="lat" Type="float" Mode="In" />
+    <Parameter Name="lon" Type="float" Mode="In" />
+  </Function>
+  <Function Name="GpsGlb_z" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="lat" Type="float" Mode="In" />
+    <Parameter Name="lon" Type="float" Mode="In" />
+  </Function>
+  <EntityContainer Name="AOEChatModelStoreContainer">
+    <EntitySet Name="ChatUser" EntityType="Self.ChatUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LastUserPosition" EntityType="Self.LastUserPosition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__LastUserP__ChatU__2F10007B" Association="Self.FK__LastUserP__ChatU__2F10007B">
+      <End Role="ChatUser" EntitySet="ChatUser" />
+      <End Role="LastUserPosition" EntitySet="LastUserPosition" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Message__ChatUse__29572725" Association="Self.FK__Message__ChatUse__29572725">
+      <End Role="ChatUser" EntitySet="ChatUser" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

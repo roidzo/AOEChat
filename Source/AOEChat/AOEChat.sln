@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOEChat", "AOEChat\AOEChat.csproj", "{B1505009-E6FE-42CD-A7A8-5DB1FD509E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOEChat.Server", "AOEChat.Server\AOEChat.Server.csproj", "{B3D1B917-D11C-4D71-9A80-8AF942178D1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1505009-E6FE-42CD-A7A8-5DB1FD509E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1505009-E6FE-42CD-A7A8-5DB1FD509E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1505009-E6FE-42CD-A7A8-5DB1FD509E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1505009-E6FE-42CD-A7A8-5DB1FD509E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D1B917-D11C-4D71-9A80-8AF942178D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D1B917-D11C-4D71-9A80-8AF942178D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D1B917-D11C-4D71-9A80-8AF942178D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D1B917-D11C-4D71-9A80-8AF942178D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

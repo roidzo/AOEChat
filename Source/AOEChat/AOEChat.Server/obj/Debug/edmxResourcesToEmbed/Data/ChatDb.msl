@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AOEChatModelStoreContainer" CdmEntityContainer="AOEChatEntities">
+    <EntitySetMapping Name="ChatUsers">
+      <EntityTypeMapping TypeName="AOEChatModel.ChatUser">
+        <MappingFragment StoreEntitySet="ChatUser">
+          <ScalarProperty Name="ChatUserId" ColumnName="ChatUserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LastUserPositions">
+      <EntityTypeMapping TypeName="AOEChatModel.LastUserPosition">
+        <MappingFragment StoreEntitySet="LastUserPosition">
+          <ScalarProperty Name="CurrentUserPositionId" ColumnName="CurrentUserPositionId" />
+          <ScalarProperty Name="ChatUserId" ColumnName="ChatUserId" />
+          <ScalarProperty Name="GpsXCoord" ColumnName="GpsXCoord" />
+          <ScalarProperty Name="GpsYCoord" ColumnName="GpsYCoord" />
+          <ScalarProperty Name="TimeSent" ColumnName="TimeSent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="AOEChatModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <ScalarProperty Name="ChatUserId" ColumnName="ChatUserId" />
+          <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+          <ScalarProperty Name="GpsXCoord" ColumnName="GpsXCoord" />
+          <ScalarProperty Name="GpsYCoord" ColumnName="GpsYCoord" />
+          <ScalarProperty Name="TimeSent" ColumnName="TimeSent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetGpsVectorFromTo" FunctionName="AOEChatModel.Store.GetGpsVectorFromTo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AOEChatModel.GetGpsVectorFromTo_Result">
+          <ScalarProperty Name="dist_kms" ColumnName="dist_kms" />
+          <ScalarProperty Name="ActualDegs" ColumnName="ActualDegs" />
+          <ScalarProperty Name="ApproxDegs" ColumnName="ApproxDegs" />
+          <ScalarProperty Name="bearing" ColumnName="bearing" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
